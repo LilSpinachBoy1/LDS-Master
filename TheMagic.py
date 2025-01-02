@@ -21,7 +21,7 @@ def find_max(files, category):
         narrow_maxes = []  # The max just for this file
         data = pd.read_csv(file)
         for i in data[category]:
-            if i == "tr":
+            if i == "tr" or i == "n/a":
                 continue
             else:
                 narrow_maxes.append(i)
@@ -37,13 +37,15 @@ def find_min(files, category):
         for i in data[category]:
             if i == "tr":
                 narrow_min.append("0")
+            elif i == "n/a":
+                continue
             else:
                 narrow_min.append(i)
         wide_min.append(min(narrow_min))
     return min(wide_min)
 
 
-UK_VAR = "Daily Total Rainfall (0900-0900) (mm)"
+UK_VAR = "Daily Total Sunshine (0000-2400) (hrs)"
 GLOB_VAR = "Rainfall (24 hour total)"
 
 # Find the max temperature for each location
