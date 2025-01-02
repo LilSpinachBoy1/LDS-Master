@@ -1,18 +1,14 @@
 # IMPORTS
-try:
-    from time import sleep
-    from os import listdir
-    import pandas as pd
+from time import sleep
+from os import listdir, getcwd
+try: import pandas as pd
 except ImportError:
     print("Pandas not installed. Please install pandas using 'pip install pandas'")
     sleep(5)
     exit()
 
 # Access Data
-"""
-CHANGE THE data_path VARIABLE TO THE PATH OF THE DATA FOLDER ON YOUR COMPUTER
-"""
-data_path = r"C:\Users\Sam\OneDrive - Inspiration Trust\0 - A Levels\3 - Maths\3 - LDS\LDS as DB\DATA"
+data_path = getcwd() + "\\Data"  # The path to the data folder, based on the users current working directory
 all_files = [data_path + "\\" + file for file in listdir(data_path)]
 uk_files = [data_path + "\\" + file for file in listdir(data_path) if "UK" in file]
 foreign_files = [data_path + "\\" + file for file in listdir(data_path) if "GLOBE" in file]
