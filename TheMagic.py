@@ -13,6 +13,8 @@ all_files = [data_path + "\\" + file for file in listdir(data_path)]
 uk_files = [data_path + "\\" + file for file in listdir(data_path) if "UK" in file]
 foreign_files = [data_path + "\\" + file for file in listdir(data_path) if "GLOBE" in file]
 
+print(uk_files)
+
 
 # Accessing data from the files
 def find_max(files, category):
@@ -24,7 +26,7 @@ def find_max(files, category):
             if i == "tr" or i == "n/a":
                 continue
             else:
-                narrow_maxes.append(i)
+                narrow_maxes.append(float(i))
         wide_maxes.append(max(narrow_maxes))
     return max(wide_maxes)
 
@@ -36,16 +38,16 @@ def find_min(files, category):
         data = pd.read_csv(file)
         for i in data[category]:
             if i == "tr":
-                narrow_min.append("0")
+                narrow_min.append(0)
             elif i == "n/a":
                 continue
             else:
-                narrow_min.append(i)
+                narrow_min.append(float(i))
         wide_min.append(min(narrow_min))
     return min(wide_min)
 
 
-UK_VAR = "Daily Total Sunshine (0000-2400) (hrs)"
+UK_VAR = "Daily Total Rainfall (0900-0900) (mm)"
 GLOB_VAR = "Rainfall (24 hour total)"
 
 # Find the max temperature for each location
