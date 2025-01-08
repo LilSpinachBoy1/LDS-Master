@@ -13,8 +13,6 @@ all_files = [data_path + "\\" + file for file in listdir(data_path)]
 uk_files = [data_path + "\\" + file for file in listdir(data_path) if "UK" in file]
 foreign_files = [data_path + "\\" + file for file in listdir(data_path) if "GLOBE" in file]
 
-print(uk_files)
-
 
 # Accessing data from the files
 def find_max(files, category):
