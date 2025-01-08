@@ -1,6 +1,9 @@
 # IMPORTS
 from time import sleep
 from os import listdir, getcwd
+
+from pandas.core.computation.ops import isnumeric
+
 try: import pandas as pd
 except ImportError:
     print("Pandas not installed. Please install pandas using 'pip install pandas'")
@@ -20,6 +23,7 @@ def find_max(files, category):
     for file in files:
         narrow_maxes = []  # The max just for this file
         data = pd.read_csv(file)
+        data.fillna(0)
         for i in data[category]:
             if i == "tr" or i == "n/a":
                 continue
@@ -34,6 +38,7 @@ def find_min(files, category):
     for file in files:
         narrow_min = []  # The max just for this file
         data = pd.read_csv(file)
+        data.fillna(0)
         for i in data[category]:
             if i == "tr":
                 narrow_min.append(0)
@@ -45,7 +50,7 @@ def find_min(files, category):
     return min(wide_min)
 
 
-UK_VAR = "Daily Total Rainfall (0900-0900) (mm)"
+UK_VAR = "Daily Total Sunshine (0000-2400) (hrs)"
 GLOB_VAR = "Rainfall (24 hour total)"
 
 # Find the max temperature for each location
